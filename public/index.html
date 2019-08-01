@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        #main {
+            margin-top: 50px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        #qrcode img {
+            position: absolute;
+            top: 0%;
+            left: 20%;
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
+
+        #qrcode {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.6);
+            z-index: 9999;
+            display: none;
+
+        }
+        #topic {
+            position: absolute;
+            top: 0%;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
+
+        #test {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
+
+        #data {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 200px;
+            height: 100px;
+            display: block;
+        }
+
+        #sb {
+            position: absolute;
+            top: 150%;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
+    </style>
+
+    <script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="qrcode">
+        <img id="image" width="100%" height="100%" src="https://github.com/NoelBright/pubsub/raw/master/public/nknpubsubx.jpeg">
+    </div>
+
+    <div id="topic">
+    <button id="main">topic</button>
+    </div>
+
+    <div id= "test">
+        <input id="data" type="text" name="name" />
+        <input id="sb" type="submit" value="测试"  οnclick="test()"/>
+    </div>
+    <script>
+        $(function() {
+            $("#main").click(function() {
+                $("#qrcode").fadeIn("slow");
+            });
+
+            $("#qrcode").click(function() {
+                $("#qrcode").fadeOut("slow");
+            })
+            $("#sb").click(function() {
+		    let content = $("#data").val();
+		    $.post('http://68.183.161.15:80/message', {"content": content});
+            });
+            
+        });
+    </script>
+</body>
+</html>
